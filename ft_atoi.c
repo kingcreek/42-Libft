@@ -14,7 +14,7 @@
 
 int	ft_atoi(const char *str)
 {
-	unsigned int	num;
+	unsigned long	num;
 	int				i;
 	int				np;
 
@@ -30,6 +30,10 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0');
+		if (num > LONG_MAX && np == -1)
+			return (0);
+		else if (num > LONG_MAX && np == 1)
+			return (-1);
 		i++;
 	}
 	return ((int)(np * num));
